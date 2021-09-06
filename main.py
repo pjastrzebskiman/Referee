@@ -1,7 +1,6 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-
 import winsound
 frequency = 2500  # Set Frequency To 2500 Hertz
 duration = 1000  # Set Duration To 1000 ms == 1 second
@@ -64,7 +63,8 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             cv2.putText(image, str(angle_right), tuple(np.multiply(knee_right, [640, 480]).astype(int)),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2, cv2.LINE_AA)
 
-            if angle_left <= 90 and angle_right<=90: winsound.Beep(frequency, duration)
+            #if angle_left <= 90 and angle_right<=90: winsound.Beep(frequency, duration, winsound.SND_ASYNC)
+            if angle_left <= 90 or angle_right <= 90: winsound.PlaySound("sa.mp3", winsound.SND_ASYNC)
 
 
 
